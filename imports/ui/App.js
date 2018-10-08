@@ -12,6 +12,7 @@ export default class App extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getPokedexEntries = this.getPokedexEntries.bind(this);
     this.state = {
       pokeId: "Politoed",
       pokemonName: "",
@@ -23,9 +24,22 @@ export default class App extends Component {
       type: "",
       id: "",
       weight: "",
-      height: ""
+      height: "",
+      pokedexEntries: [],
     };
     this.handleSubmit();
+    this.getPokedexEntries();
+}
+getPokedexEntries(){ 
+  let self = this;
+  Meteor.call('getPokedex',
+  function(error,result){
+    console.log(result);
+    self.setState({
+      pokedexEntries: result
+    });
+  });
+
 }
 
 handleChange(event) {
