@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 Meteor.startup(() => {
   // code to run on server at startup
+
 });
 Meteor.methods({
   'getPokemonAPI'(id, type) {
@@ -17,6 +18,23 @@ Meteor.methods({
 
   },
 
+  'getPokedex'() { 
+    let retrievePokedexList = { 
+      'Kanto': 2, 
+      'Johto': 3, 
+      'Hoenn': 4, 
+      'Sinnoh': 6, 
+      'Unova': 9, 
+    }
+    let pokedexList = []; 
+
+    for (var region in retrievePokedexList){ 
+      pokedexList.push(Meteor.call('getPokemonAPI',retrievePokedexList[region], 'pokedex')); 
+    }
+
+    return pokedexList; 
+
+  },
 
   'getEvolutions'(index){
     let evolutionChain = Meteor.call('getPokemonAPI', index, 'evolution-chain').data.chain;
