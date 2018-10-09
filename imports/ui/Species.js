@@ -67,7 +67,7 @@ export default class Species extends Component{
 
                   {this.state.types.map(function(typeDetails, i){
                      return (
-                       <p key={i}>
+                       <p key={i} className={typeDetails.type.name}>
                          {typeDetails.type.name}
                         </p>
                      )
