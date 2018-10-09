@@ -61,8 +61,28 @@ export default class TypeAgainst extends Component{
              <tbody>
              <tr>
              {damage.map(function(dmg, i){
+              let colour = 'white';
+               switch(dmg){ 
+                 case 0: 
+                  colour = '#d8d8d8';
+                  break; 
+                 case 0.25: 
+                  colour = '#96ffa2';
+                  break;
+                case 0.5: 
+                  colour = '#c1ffc8';
+                  break; 
+                case 2: 
+                  colour = '#ffcece';
+                  break; 
+                case 4: 
+                  colour = '#ff9696';
+                  break; 
+                default: 
+                colour = '#ffffff';
+               }
                 return (
-                  <td key={i} align="center">
+                  <td key={i} bgcolor={colour} align="center">
                    {dmg.toString() + "X"}
                    </td>
                 )
