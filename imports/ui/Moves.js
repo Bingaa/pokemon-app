@@ -60,7 +60,7 @@ export default class Moves extends Component{
                <tr key={i}>
                  <td>{moveDetails.levelLearned}</td>
                  <td>{moveDetails.name.replace("-", " ")}</td>
-                 <td>{moveDetails.type}</td>
+                 <td><p className={moveDetails.type}>{moveDetails.type}</p></td>
                  <td>{moveDetails.damageClass}</td>
                  <td>{moveDetails.power}</td>
                  <td>{moveDetails.accuracy}</td>
@@ -92,7 +92,7 @@ export default class Moves extends Component{
             return (
               <tr key={i}>
                 <td>{moveDetails.name.replace("-", " ")}</td>
-                <td>{moveDetails.type}</td>
+                <td><p className={moveDetails.type}>{moveDetails.type}</p></td>
                 <td>{moveDetails.damageClass}</td>
                 <td>{moveDetails.power}</td>
                 <td>{moveDetails.accuracy}</td>
@@ -124,7 +124,7 @@ export default class Moves extends Component{
            return (
              <tr key={i}>
                <td>{moveDetails.name.replace("-", " ")}</td>
-               <td>{moveDetails.type}</td>
+               <td><p className={moveDetails.type}>{moveDetails.type}</p></td>
                <td>{moveDetails.damageClass}</td>
                <td>{moveDetails.power}</td>
                <td>{moveDetails.accuracy}</td>
@@ -156,7 +156,7 @@ export default class Moves extends Component{
           return (
             <tr key={i}>
               <td>{moveDetails.name.replace("-", " ")}</td>
-              <td>{moveDetails.type}</td>
+              <td><p className={moveDetails.type}>{moveDetails.type}</p></td>
               <td>{moveDetails.damageClass}</td>
               <td>{moveDetails.power}</td>
               <td>{moveDetails.accuracy}</td>
