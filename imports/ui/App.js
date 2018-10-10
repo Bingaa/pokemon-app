@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import Abilities from './Abilities.js'
-import Moves from './Moves.js'
-import TypeAgainst from './TypeAgainst.js'
-import Species from './Species.js'
+import Abilities from './Abilities.js';
+import Moves from './Moves.js';
+import TypeAgainst from './TypeAgainst.js';
+import Species from './Species.js';
+import Stats from './Stats.js';
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -14,7 +15,7 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getPokedexEntries = this.getPokedexEntries.bind(this);
     this.state = {
-      pokeId: "Politoed",
+      pokeId: "Dragonite",
       pokemonName: "",
       imageFront: "",
       imageFrontShiny: "",
@@ -26,6 +27,7 @@ export default class App extends Component {
       weight: "",
       height: "",
       pokedexEntries: [],
+      stats: []
     };
     this.handleSubmit();
     this.getPokedexEntries();
@@ -63,7 +65,8 @@ handleSubmit(event) {
         types: result.data.types,
         id: result.data.id,
         weight: result.data.weight/10 + 'lb',
-        height: result.data.height/10 + 'm'
+        height: result.data.height/10 + 'm', 
+        stats: result.data.stats
       });
     });
 
@@ -87,8 +90,9 @@ handleSubmit(event) {
           </div>
         </div>
         <Species types={this.state.types} weight={this.state.weight} height={this.state.height} id={this.state.id} />
-        <TypeAgainst types={this.state.types} name={this.state.pokemonName}/>
         <Abilities abilities={this.state.abilities} name={this.state.pokemonName} />
+        <TypeAgainst types={this.state.types} name={this.state.pokemonName}/>
+        <Stats stats={this.state.stats} id={this.state.id}/>
         <Moves moves={this.state.moves} name={this.state.pokemonName} />
       </div>
     );
