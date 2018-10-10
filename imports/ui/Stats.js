@@ -70,7 +70,7 @@ export default class Stats extends Component{
                 <td><input type="number" min="0" max="31"/></td>
             </tr>
             <tr>
-                <td>Special Defence</td>
+                <td>Special Defense</td>
                 <td>{this.state.baseSpecialDefense}</td>
                 <td><input type="number" min="0" max="255"/></td>
                 <td><input type="number" min="0" max="31"/></td>
