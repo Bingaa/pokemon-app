@@ -98,8 +98,13 @@ export default class Stats extends Component{
       if(value == 'iv' && numVal > 31){ 
           numVal = 31; 
       } 
-      if(value == 'ev' && numVal > 255){ 
-          numVal = 255;
+      if(value == 'ev'){ 
+          if(numVal > 252){ 
+            numVal = 252;
+          }
+          if(numVal - this.state[stat][value] > this.availableEVs()){ 
+            numVal = this.availableEVs() + this.state[stat][value];
+          }
       } 
       this.state[stat][value] = numVal; 
       this.setState({...this.state[stat], value: numVal});
