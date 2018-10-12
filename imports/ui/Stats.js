@@ -35,11 +35,11 @@ export default class Stats extends Component{
                 ev: 0, 
                 iv: 0
             }, 
-            availableEVs: 508, 
             level: 1
         };
         this.updateStat = this.updateStat.bind(this);
         this.updateLevel = this.updateLevel.bind(this);
+        this.availableEVs = this.availableEVs.bind(this);
         this.calculateStat = this.calculateStat.bind(this);
   }
 
