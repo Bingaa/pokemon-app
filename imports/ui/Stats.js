@@ -35,12 +35,15 @@ export default class Stats extends Component{
                 ev: 0, 
                 iv: 0
             }, 
-            level: 1
+            level: 1, 
+            increased: "",
+            decreased: ""
         };
         this.updateStat = this.updateStat.bind(this);
         this.updateLevel = this.updateLevel.bind(this);
         this.availableEVs = this.availableEVs.bind(this);
         this.calculateStat = this.calculateStat.bind(this);
+        this.updateNature = this.updateNature.bind(this);
   }
 
 
@@ -83,6 +86,11 @@ export default class Stats extends Component{
   }
   calculateStat(stat){ //TODO: Implement nature into calculation
     let nature = 1; 
+    if (this.state.increased == stat){ 
+        nature = 1.1;
+    } else if (this.state.decreased == stat){ 
+        nature = 0.9;
+    }
     let result; 
     if (stat == 'hp'){ 
         result =  Math.round(((((2*this.state.hp.base) + this.state.hp.iv + (this.state.hp.ev/4))*this.state.level)/100) + this.state.level + 10); 
@@ -118,10 +126,17 @@ export default class Stats extends Component{
   }
   availableEVs(){ 
     let usedEVs = this.state.hp.ev + this.state.speed.ev + this.state.attack.ev + this.state.defense.ev + this.state.specialAttack.ev + this.state.specialDefense.ev; 
-
     return 508 - usedEVs; 
-
   }
+
+  updateNature(event){ 
+    let natureStringList = event.target.value.split(","); 
+    this.setState({
+        increased: natureStringList[0].substr(1), 
+        decreased: natureStringList[1].substr(1)
+    });
+  }
+
   render() {
     return  (
         <div>
@@ -129,8 +144,36 @@ export default class Stats extends Component{
         <div className="center">
             <p>Level: </p>
             <input type="number" min="1" max="100" value={this.state.level} onChange={this.updateLevel}/>
-            <p>Nature: </p>
-            <input type="text" min="1" max="100"/>
+              <div className="form-group">
+                <select className="custom-select" onChange={this.updateNature}>
+                    <option defaultValue="">Nature</option>
+                    <option value="">Hardy</option>
+                    <option value="+attack,-defense">Brave (+Attack, -Defense)</option>
+                    <option value="+attack,-speed">Adamant (+Attack, -Speed)</option>
+                    <option value="+attack,-specialAttack">Naughty (+Attack, -Special Attack)</option>
+                    <option value="+attack,-specialDefense">Lonely (+Attack, -Special Defense)</option>
+                    <option value="">Docile</option>
+                    <option value="+defense,-attack">Bold (+Defense, -Attack)</option>
+                    <option value="+defense,-speed">Relaxed (+Defense, -Speed)</option>
+                    <option value="+defense,-specialAttack">Impish (+Defense, -Special Attack)</option>
+                    <option value="+defense,-specialDefense">Lax (+Defense, -Special Defense)</option>
+                    <option value="">Serious</option>
+                    <option value="+speed,-attack">Timid (+Speed, -Attack)</option>
+                    <option value="+speed,-defense">Hasty (+Speed, -Defense)</option>
+                    <option value="+speed,-specialAttack">Jolly (+Speed, -Special Attack)</option>
+                    <option value="+speed,-specialDefense">Naive (+Speed, -Special Defense)</option>
+                    <option value="">Bashful</option>
+                    <option value="+specialAttack,-attack">Modest (+Special Attack, -Attack)</option>
+                    <option value="+specialAttack,-defense">Mild (+Special Attack, -Defense)</option>
+                    <option value="+specialAttack,-speed">Quiet (+Special Attack, -Speed)</option>
+                    <option value="+specialAttack,-specialDefense">Rash (+Special Attack, -Special Defense)</option>
+                    <option value="">Quirky</option>
+                    <option value="+specialDefense,-attack">Calm (+Special Defense, -Attack)</option>
+                    <option value="+specialDefense,-defense">Gentle (+Special Defense, -Defense)</option>
+                    <option value="+specialDefense,-speed">Sassy (+Special Defense, -Speed)</option>
+                    <option value="+specialDefense,-specialAttack">Careful (+Special Defense, -Special Attack)</option>
+                </select>
+            </div>
             <p>Available EVs: {this.availableEVs()}</p>
         </div>
         <table className="table table-hover">
