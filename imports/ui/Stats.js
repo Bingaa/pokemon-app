@@ -36,8 +36,8 @@ export default class Stats extends Component{
                 iv: 0
             }, 
             level: 1, 
-            increased: "",
-            decreased: ""
+            increased: "none",
+            decreased: "none"
         };
         this.updateStat = this.updateStat.bind(this);
         this.updateLevel = this.updateLevel.bind(this);
@@ -132,8 +132,8 @@ export default class Stats extends Component{
   updateNature(event){ 
     let increasedStat = event.target.value.split(",")[0].substr(1); 
     let decreasedStat = event.target.value.split(",")[1].substr(1); 
-
-    var statBodyElement = document.getElementsByTagName("tr");
+   
+    var statBodyElement = document.getElementById("statsBody").getElementsByTagName("tr");
     for (let i = 0; i < statBodyElement.length; i++){ 
         if (statBodyElement[i].id == increasedStat){ 
             statBodyElement[i].className = "table-success";
@@ -159,27 +159,27 @@ export default class Stats extends Component{
               <div className="form-group">
                 <select className="custom-select" onChange={this.updateNature}>
                     <option defaultValue="">Nature</option>
-                    <option value="">Hardy</option>
+                    <option value="none,none">Hardy</option>
                     <option value="+attack,-defense">Brave (+Attack, -Defense)</option>
                     <option value="+attack,-speed">Adamant (+Attack, -Speed)</option>
                     <option value="+attack,-specialAttack">Naughty (+Attack, -Special Attack)</option>
                     <option value="+attack,-specialDefense">Lonely (+Attack, -Special Defense)</option>
-                    <option value="">Docile</option>
+                    <option value="none,none">Docile</option>
                     <option value="+defense,-attack">Bold (+Defense, -Attack)</option>
                     <option value="+defense,-speed">Relaxed (+Defense, -Speed)</option>
                     <option value="+defense,-specialAttack">Impish (+Defense, -Special Attack)</option>
                     <option value="+defense,-specialDefense">Lax (+Defense, -Special Defense)</option>
-                    <option value="">Serious</option>
+                    <option value="none,none">Serious</option>
                     <option value="+speed,-attack">Timid (+Speed, -Attack)</option>
                     <option value="+speed,-defense">Hasty (+Speed, -Defense)</option>
                     <option value="+speed,-specialAttack">Jolly (+Speed, -Special Attack)</option>
                     <option value="+speed,-specialDefense">Naive (+Speed, -Special Defense)</option>
-                    <option value="">Bashful</option>
+                    <option value="none,none">Bashful</option>
                     <option value="+specialAttack,-attack">Modest (+Special Attack, -Attack)</option>
                     <option value="+specialAttack,-defense">Mild (+Special Attack, -Defense)</option>
                     <option value="+specialAttack,-speed">Quiet (+Special Attack, -Speed)</option>
                     <option value="+specialAttack,-specialDefense">Rash (+Special Attack, -Special Defense)</option>
-                    <option value="">Quirky</option>
+                    <option value="none,none">Quirky</option>
                     <option value="+specialDefense,-attack">Calm (+Special Defense, -Attack)</option>
                     <option value="+specialDefense,-defense">Gentle (+Special Defense, -Defense)</option>
                     <option value="+specialDefense,-speed">Sassy (+Special Defense, -Speed)</option>
@@ -197,7 +197,7 @@ export default class Stats extends Component{
                 <th>Individual Values</th>
             </tr>
         </thead>
-            <tbody>
+            <tbody id="statsBody">
             <tr id="hp">
                 <td>HP</td>
                 <td>{this.calculateStat('hp')}</td>
