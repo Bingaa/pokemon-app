@@ -111,6 +111,12 @@ export default class Stats extends Component{
     }
     this.setState({level: numVal});
   }
+  availableEVs(){ 
+    let usedEVs = this.state.hp.ev + this.state.speed.ev + this.state.attack.ev + this.state.defense.ev + this.state.specialAttack.ev + this.state.specialDefense.ev; 
+
+    return 508 - usedEVs; 
+
+  }
   render() {
     return  (
         <div>
@@ -120,6 +126,7 @@ export default class Stats extends Component{
             <input type="number" min="1" max="100" value={this.state.level} onChange={this.updateLevel}/>
             <p>Nature: </p>
             <input type="text" min="1" max="100"/>
+            <p>Available EVs: {this.availableEVs()}</p>
         </div>
         <table className="table table-hover">
         <thead>
