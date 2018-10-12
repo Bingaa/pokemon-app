@@ -130,10 +130,22 @@ export default class Stats extends Component{
   }
 
   updateNature(event){ 
-    let natureStringList = event.target.value.split(","); 
+    let increasedStat = event.target.value.split(",")[0].substr(1); 
+    let decreasedStat = event.target.value.split(",")[1].substr(1); 
+
+    var statBodyElement = document.getElementsByTagName("tr");
+    for (let i = 0; i < statBodyElement.length; i++){ 
+        if (statBodyElement[i].id == increasedStat){ 
+            statBodyElement[i].className = "table-success";
+        } else if (statBodyElement[i].id == decreasedStat){ 
+            statBodyElement[i].className = "table-primary";
+        } else { 
+            statBodyElement[i].className = "table-secondary";
+        }
+    }
     this.setState({
-        increased: natureStringList[0].substr(1), 
-        decreased: natureStringList[1].substr(1)
+        increased: increasedStat, 
+        decreased: decreasedStat
     });
   }
 
@@ -186,37 +198,37 @@ export default class Stats extends Component{
             </tr>
         </thead>
             <tbody>
-            <tr>
+            <tr id="hp">
                 <td>HP</td>
                 <td>{this.calculateStat('hp')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.hp.ev} onChange={(event) => this.updateStat('hp','ev', event)}/></td>
                 <td><input type="number" min="0" max="31" value={this.state.hp.iv} onChange={(event) => this.updateStat('hp','iv', event)}/></td>
             </tr>
-            <tr>
+            <tr id="attack">
                 <td>Attack</td>
                 <td>{this.calculateStat('attack')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.attack.ev} onChange={(event) => this.updateStat('attack','ev', event)}/></td>
                 <td><input type="number" min="0" max="31"value={this.state.attack.iv} onChange={(event) => this.updateStat('attack','iv', event)}/></td>
             </tr>
-            <tr>
+            <tr id="defense">
                 <td>Defense</td>
                 <td>{this.calculateStat('defense')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.defense.ev} onChange={(event) => this.updateStat('defense','ev', event)}/></td>
                 <td><input type="number" min="0" max="31" value={this.state.defense.iv} onChange={(event) => this.updateStat('defense','iv', event)}/></td>
             </tr>
-            <tr>
+            <tr id="specialAttack">
                 <td>Special Attack</td>
                 <td>{this.calculateStat('specialAttack')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.specialAttack.ev} onChange={(event) => this.updateStat('specialAttack','ev', event)}/></td>
                 <td><input type="number" min="0" max="31" value={this.state.specialAttack.iv} onChange={(event) => this.updateStat('specialAttack','iv', event)}/></td>
             </tr>
-            <tr>
+            <tr id="specialDefense">
                 <td>Special Defense</td>
                 <td>{this.calculateStat('specialDefense')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.specialDefense.ev} onChange={(event) => this.updateStat('specialDefense','ev', event)}/></td>
                 <td><input type="number" min="0" max="31" value={this.state.specialDefense.iv} onChange={(event) => this.updateStat('specialDefense','iv', event)}/></td>
             </tr>
-            <tr>
+            <tr id="speed">
                 <td>Speed</td>
                 <td>{this.calculateStat('speed')}</td>
                 <td><input type="number" min="0" max="255" value={this.state.speed.ev} onChange={(event) => this.updateStat('speed','ev', event)}/></td>
