@@ -8,32 +8,32 @@ export default class Stats extends Component{
             speed: {
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             }, 
             specialDefense: { 
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             specialAttack: { 
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             defense: { 
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             attack: { 
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             hp: { 
                 base: 0, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             }, 
             level: 1, 
             increased: "none",
@@ -54,32 +54,32 @@ export default class Stats extends Component{
             speed: {
                 base: nextProps.stats[0].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             }, 
             specialDefense: { 
                 base: nextProps.stats[1].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             specialAttack: { 
                 base: nextProps.stats[2].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             defense: { 
                 base: nextProps.stats[3].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             attack: { 
                 base: nextProps.stats[4].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             },
             hp: { 
                 base: nextProps.stats[5].base_stat, 
                 ev: 0, 
-                iv: 0
+                iv: 31
             }
         });
       }
@@ -114,10 +114,6 @@ export default class Stats extends Component{
       } 
       this.state[stat][value] = numVal; 
       this.setState({...this.state[stat], value: numVal});
-      let evBar = document.getElementById('evbar');
-      let percentage = Math.round((this.availableEVs()/508)*100);
-      console.log(percentage);
-      evBar.style.width = percentage + "%";
   }
   updateLevel(event){ 
     let numVal = event.target.valueAsNumber;
@@ -152,6 +148,13 @@ export default class Stats extends Component{
   }
 
   render() {
+    
+    let evBar = document.getElementById('evbar');
+    if(evBar){ 
+        let percentage = Math.round((this.availableEVs()/508)*100);
+        evBar.style.width = percentage + "%";
+    }
+
     return  (
         <div>
         <h4 className="card-header">Stats Calculator</h4>
