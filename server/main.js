@@ -116,7 +116,7 @@ Meteor.methods({
         captureRate: result.data.capture_rate,
         growthRate: result.data.growth_rate.name,
         eggGroups: result.data.egg_groups,
-        evolutionChainIndex: result.data.evolution_chain.url.replace("https://pokeapi.co/api/v2/evolution-chain/", "").replace("/", "")
+        evolutionChainIndex: result.data.evolution_chain.url.replace("https://pokeapi.co/api/v2/evolution-chain/", "").replace("/", ""),
       };
 
       for (var i = 0; i < result.data.flavor_text_entries.length; i++){
@@ -125,6 +125,19 @@ Meteor.methods({
           break;
         }
       }
+      let forms = []; 
+      for(var i = 0; i < result.data.varieties.length; i++){ 
+        if(result.data.varieties[i].is_default == false){ 
+          console.log("look");
+          console.log(result.data.varieties[i].pokemon.name);
+          forms.push({
+            name: result.data.varieties[i].pokemon.name,
+            img: Meteor.call('getPokemonAPI',result.data.varieties[i].pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/","").replace("/",""), "pokemon").data.sprites.front_default
+          });
+
+        }
+      }
+      speciesReturn.forms = forms; 
 
       return speciesReturn;
   },
