@@ -63,7 +63,7 @@ handleSubmit(event) {
         abilities: result.data.abilities,
         moves: result.data.moves,
         types: result.data.types,
-        id: result.data.id,
+        id: result.data.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/",""),
         weight: result.data.weight/10 + 'lb',
         height: result.data.height/10 + 'm', 
         stats: result.data.stats
