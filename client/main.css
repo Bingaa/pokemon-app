@@ -9680,6 +9680,7 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: -1px 0 rgb(19, 19, 70), 0 1px rgb(19, 19, 70), 1px 0 rgb(19, 19, 70), 0 -1px rgb(19, 19, 70);
 }
 
 .containerImg {
