@@ -15,7 +15,7 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.getPokedexEntries = this.getPokedexEntries.bind(this);
     this.state = {
-      pokeId: "Dragonite",
+      pokeId: "Charizard",
       pokemonName: "",
       imageFront: "",
       imageFrontShiny: "",
@@ -32,7 +32,7 @@ export default class App extends Component {
     this.handleSubmit();
     this.getPokedexEntries();
 }
-getPokedexEntries(){ 
+getPokedexEntries(){
   let self = this;
   Meteor.call('getPokedex',
   function(error,result){
@@ -65,7 +65,7 @@ handleSubmit(event) {
         types: result.data.types,
         id: result.data.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/",""),
         weight: result.data.weight/10 + 'lb',
-        height: result.data.height/10 + 'm', 
+        height: result.data.height/10 + 'm',
         stats: result.data.stats
       });
     });
@@ -76,23 +76,42 @@ handleSubmit(event) {
     return (
       <div className="center">
       <form onSubmit={this.handleSubmit}>
-        <label className="center">
+      <div className="center">
           Pokemon:
           <input type="text" value={this.state.pokeId} onChange={this.handleChange}/>
           <input type="submit" value="Submit" className="btn btn-info" />
-        </label>
+      </div>
       </form>
+
+
+
+
+        {this.state.pokedexEntries.map(function(pokedex,i){
+          <div key={i} class="form-group">
+          <select class="custom-select">
+            <option selected="">{pokedex.data.name}</option>
+            {pokedex.data.pokemon_entries.map(function(entry,j){
+              return (
+              <option key={j} value={entry.pokemon_species.name}>{entry.entry_number + ': ' + entry.pokemon_species.name}</option>
+
+              )
+            })}
+          </select>
+        </div>
+        })}
+
+
         <h2 className="card-header">{this.state.pokemonName}</h2>
         <div className="card-body">
           <div className="row">
-              <img  style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFront}/>
-              <img  style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFrontShiny}/>
+              <img className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFront} alt=""/>
+              <img className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFrontShiny} alt=""/>
           </div>
         </div>
         <Species types={this.state.types} weight={this.state.weight} height={this.state.height} id={this.state.id} />
         <Abilities abilities={this.state.abilities} name={this.state.pokemonName} />
         <TypeAgainst types={this.state.types} name={this.state.pokemonName}/>
-        <Stats stats={this.state.stats} id={this.state.id}/>
+        <Stats stats={this.state.stats} name={this.state.pokemonName}/>
         <Moves moves={this.state.moves} name={this.state.pokemonName} />
       </div>
     );

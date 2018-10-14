@@ -220,6 +220,13 @@ img {
   vertical-align: middle;
   border-style: none;
 }
+.imgSprite{ 
+  vertical-align: middle;
+  border-style: none;
+}
+.imgSprite:hover{ 
+  transform: scale(1.2);
+}
 
 svg {
   overflow: hidden;
