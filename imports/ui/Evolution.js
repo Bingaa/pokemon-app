@@ -34,7 +34,7 @@ export default class Evolution extends Component{
     evolutionTree = (
       <div>
       <h4 className="card-header">Evolution Tree</h4>
-        <img title={this.state.evolutionChain.species} className="imgSprite" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={this.state.evolutionChain.img}/>
+        <img onClick={this.props.handleClick} title={this.state.evolutionChain.species} className="imgSprite" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={this.state.evolutionChain.img}/>
         <table align="center">
         <tbody>
         <tr align="center">
@@ -45,7 +45,7 @@ export default class Evolution extends Component{
                 <img src={evolDetails.evolveMethod} style={{height: '120px', width: '100px', display: 'block', margin: 'auto'}}/>
                  <p style={{color: 'white', fontWeight: 'bold'}}  className="centered">{evolDetails.evolveDetails}</p>
               </div>
-                 <img title={evolDetails.species} className="imgSprite" align="center" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
+                 <img onClick={this.props.handleClick}  title={evolDetails.species} className="imgSprite" align="center" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
 
 
              <table align="center">
@@ -58,11 +58,11 @@ export default class Evolution extends Component{
                    <img src={evolDetails.evolveMethod}  style={{height: '120px', width: '100px', display: 'block', margin: 'auto'}}/>
                     <p style={{color: 'white', fontWeight: 'bold'}} className="centered">{evolDetails.evolveDetails}</p>
                  </div>
-                   <img title={evolDetails.species} className="imgSprite" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
+                   <img onClick={this.props.handleClick} title={evolDetails.species} className="imgSprite" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
 
                  </td>
               )
-             })}
+             }, this)}
 
              </tr>
              </tbody>
@@ -70,7 +70,7 @@ export default class Evolution extends Component{
               </td>
 
            )
-         })}
+         }, this)}
          </tr>
          </tbody>
          </table>

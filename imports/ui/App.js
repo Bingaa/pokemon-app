@@ -14,6 +14,7 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getPokedexEntries = this.getPokedexEntries.bind(this);
+    this.handleChildChange = this.handleChildChange.bind(this); 
     this.state = {
       pokeId: "Charizard",
       pokemonName: "",
@@ -47,7 +48,10 @@ getPokedexEntries(){
 handleChange(event) {
   this.setState({pokeId: event.target.value.charAt(0).toUpperCase() + event.target.value.substr(1)});
 }
-
+handleChildChange(pokemonName){ 
+  this.state.pokeId = pokemonName;
+  this.handleSubmit(); 
+}
 handleSubmit(event) {
   if(event){
     event.preventDefault();
@@ -108,7 +112,7 @@ handleSubmit(event) {
               <img className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFrontShiny} alt=""/>
           </div>
         </div>
-        <Species types={this.state.types} weight={this.state.weight} height={this.state.height} id={this.state.id} />
+        <Species types={this.state.types} weight={this.state.weight} height={this.state.height} id={this.state.id} onSpriteClick={this.handleChildChange} />
         <Abilities abilities={this.state.abilities} name={this.state.pokemonName} />
         <TypeAgainst types={this.state.types} name={this.state.pokemonName}/>
         <Stats stats={this.state.stats} name={this.state.pokemonName}/>

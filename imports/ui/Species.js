@@ -5,6 +5,7 @@ export default class Species extends Component{
 
   constructor(props){
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       loading: true,
       types: [],
@@ -46,6 +47,11 @@ export default class Species extends Component{
         });
       }
   }
+
+  handleClick(event){ 
+    this.props.onSpriteClick(event.target.title);
+
+  }
   render() {
     let alternateForms = <div></div>; 
     if(this.state.forms.length != 0){ 
@@ -55,9 +61,9 @@ export default class Species extends Component{
           <div className="row">
           {this.state.forms.map(function(form, i){
                      return (
-                      <img key={i} title={form.name} className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={form.img} alt=""/>
+                      <img onClick={this.handleClick} key={i} title={form.name} className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={form.img} alt=""/>
                      )
-                   })}
+                   }, this)}
           </div>
         </div>
         
@@ -111,7 +117,7 @@ export default class Species extends Component{
 
               </tbody>
           </table>
-          <Evolution evolutionChainIndex={this.state.evolutionChainIndex}/>
+          <Evolution evolutionChainIndex={this.state.evolutionChainIndex} handleClick={this.handleClick}/>
           {alternateForms}
         </div>
       );
