@@ -42,7 +42,7 @@ export default class Evolution extends Component{
            return (
               <td key={i}align="center">
               <div className="containerImg">
-                <img src={evolDetails.evolveMethod} style={{height: '100px', width: '100px', display: 'block', margin: 'auto'}}/>
+                <img src={evolDetails.evolveMethod} style={{height: '120px', width: '100px', display: 'block', margin: 'auto'}}/>
                  <p style={{color: 'white', fontWeight: 'bold'}}  className="centered">{evolDetails.evolveDetails}</p>
               </div>
                  <img align="center" style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
@@ -55,7 +55,7 @@ export default class Evolution extends Component{
                return (
                  <td key={i}align="center">
                  <div className="containerImg">
-                   <img src={evolDetails.evolveMethod}  style={{height: '100px', width: '100px', display: 'block', margin: 'auto'}}/>
+                   <img src={evolDetails.evolveMethod}  style={{height: '120px', width: '100px', display: 'block', margin: 'auto'}}/>
                     <p style={{color: 'white', fontWeight: 'bold'}} className="centered">{evolDetails.evolveDetails}</p>
                  </div>
                    <img  style={{height: '125px', width: '125px', display: 'block', margin: 'auto'}} src={evolDetails.img}/>
