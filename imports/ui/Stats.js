@@ -97,8 +97,6 @@ export default class Stats extends Component{
     } else { 
         result = Math.round((((((2*this.state[stat].base) + this.state[stat].iv + (this.state[stat].ev/4))*this.state.level)/100) + 5)*nature);
     }
-    console.log(stat);
-    console.log((2*this.state[stat].base) + this.state[stat].iv + (this.state[stat].ev/4)*this.state.level);
     return result; 
   }
   updateStat(stat, value, event){ 
@@ -116,6 +114,10 @@ export default class Stats extends Component{
       } 
       this.state[stat][value] = numVal; 
       this.setState({...this.state[stat], value: numVal});
+      let evBar = document.getElementById('evbar');
+      let percentage = Math.round((this.availableEVs()/508)*100);
+      console.log(percentage);
+      evBar.style.width = percentage + "%";
   }
   updateLevel(event){ 
     let numVal = event.target.valueAsNumber;
@@ -154,12 +156,14 @@ export default class Stats extends Component{
         <div>
         <h4 className="card-header">Stats Calculator</h4>
         <div className="center">
-            <p>Level: </p>
-            <input type="number" min="1" max="100" value={this.state.level} onChange={this.updateLevel}/>
+            <div className="form-group has-success">
+                <label className="form-control-label">Level</label>
+                <input type="number" min="1" max="100" value={this.state.level} onChange={this.updateLevel} className="form-control is-valid"/>
+            </div>
               <div className="form-group">
-                <select className="custom-select" onChange={this.updateNature}>
-                    <option defaultValue="">Nature</option>
-                    <option value="none,none">Hardy</option>
+              <label className="form-control-label">Nature</label>
+                <select className="custom-select is-valid" onChange={this.updateNature}>
+                    <option defaultValue="none,none">Hardy</option>
                     <option value="+attack,-defense">Brave (+Attack, -Defense)</option>
                     <option value="+attack,-speed">Adamant (+Attack, -Speed)</option>
                     <option value="+attack,-specialAttack">Naughty (+Attack, -Special Attack)</option>
@@ -186,7 +190,10 @@ export default class Stats extends Component{
                     <option value="+specialDefense,-specialAttack">Careful (+Special Defense, -Special Attack)</option>
                 </select>
             </div>
-            <p>Available EVs: {this.availableEVs()}</p>
+            <label className="form-control-label">Available EVs: {this.availableEVs()}</label>
+            <div className="progress">
+                <div id="evbar" style ={{width: "100%"}} className="progress-bar bg-info" role="progressbar" aria-valuenow={this.availableEVs()} aria-valuemin="0" aria-valuemax="508"></div>
+            </div>
         </div>
         <table className="table table-hover">
         <thead>
