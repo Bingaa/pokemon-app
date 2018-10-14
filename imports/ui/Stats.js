@@ -49,7 +49,7 @@ export default class Stats extends Component{
 
 
   componentWillReceiveProps(nextProps) {
-      if (nextProps.id != this.props.id){
+      if (nextProps.name != this.props.name){
         this.setState({ 
             speed: {
                 base: nextProps.stats[0].base_stat, 
@@ -163,7 +163,7 @@ export default class Stats extends Component{
               <div className="form-group">
               <label className="form-control-label">Nature</label>
                 <select className="custom-select is-valid" onChange={this.updateNature}>
-                    <option defaultValue="none,none">Hardy</option>
+                    <option defaultValue="none,none" value="none,none">Hardy</option>
                     <option value="+attack,-defense">Brave (+Attack, -Defense)</option>
                     <option value="+attack,-speed">Adamant (+Attack, -Speed)</option>
                     <option value="+attack,-specialAttack">Naughty (+Attack, -Special Attack)</option>
