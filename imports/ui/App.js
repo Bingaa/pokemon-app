@@ -57,7 +57,7 @@ handleSubmit(event) {
     function(error,result){
       console.log(result);
       self.setState({
-        pokemonName: result.data.name.charAt(0).toUpperCase() + result.data.name.substr(1),
+        pokemonName: result.data.name,
         imageFront: result.data.sprites.front_default,
         imageFrontShiny: result.data.sprites.front_shiny,
         abilities: result.data.abilities,
