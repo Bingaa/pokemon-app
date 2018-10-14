@@ -16,7 +16,8 @@ export default class Species extends Component{
       growthRate: "",
       eggGroups: [],
       description: "",
-      evolutionChainIndex: ""
+      evolutionChainIndex: "", 
+      forms: []
     };
   }
 
@@ -38,13 +39,31 @@ export default class Species extends Component{
               growthRate: result.growthRate,
               eggGroups: result.eggGroups,
               description: result.description,
-              evolutionChainIndex: result.evolutionChainIndex
+              evolutionChainIndex: result.evolutionChainIndex,
+              forms: result.forms
             });
             console.log(result);
         });
       }
   }
   render() {
+    let alternateForms = <div></div>; 
+    if(this.state.forms.length != 0){ 
+      alternateForms = (<div> 
+        <h4 className="card-header">Alternate Forms</h4>
+        <div className="card-body">
+          <div className="row">
+          {this.state.forms.map(function(form, i){
+                     return (
+                      <img key={i} title={form.name} className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={form.img} alt=""/>
+                     )
+                   })}
+          </div>
+        </div>
+        
+      </div>);
+
+    }
     return  (
         <div>
           <table className="table table-hover">
@@ -93,6 +112,7 @@ export default class Species extends Component{
               </tbody>
           </table>
           <Evolution evolutionChainIndex={this.state.evolutionChainIndex}/>
+          {alternateForms}
         </div>
       );
 
