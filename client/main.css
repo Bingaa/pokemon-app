@@ -2211,15 +2211,15 @@ textarea.form-control {
 .was-validated .form-control:valid, .form-control.is-valid, .was-validated
 .custom-select:valid,
 .custom-select.is-valid {
-  border-color: #469408;
+  border-color: #1ab4f1;
 }
 
 .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
 .custom-select:valid:focus,
 .custom-select.is-valid:focus {
-  border-color: #469408;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(70, 148, 8, 0.25);
-          box-shadow: 0 0 0 0.2rem rgba(70, 148, 8, 0.25);
+  border-color: #1ab4f1;
+  -webkit-box-shadow: 0 0 0 0.2rem #1ab4f1;
+          box-shadow: 0 0 0 0.2rem #1ab4f1;
 }
 
 .was-validated .form-control:valid ~ .valid-feedback,
