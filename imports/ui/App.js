@@ -80,23 +80,12 @@ handleSubmit(event) {
     return (
       <div className="center">
       <form onSubmit={this.handleSubmit}>
-      <div className="center">
-          Pokemon:
-          <input type="text" value={this.state.pokeId} onChange={this.handleChange}/>
-          <input type="submit" value="Submit" className="btn btn-info" />
+      <div className="form-group has-success">
+        <div className="row">
+          <input type="text" value={this.state.pokeId} onChange={this.handleChange} className="form-control is-valid" id="inputInvalid"/>
+          <input type="submit" value="Search Pokemon" className="btn btn-info" />
+          
       </div>
-      </form>
-
-
-
-
-        {this.state.pokedexEntries.map(function(pokedex,i){
-          <div key={i} class="form-group">
-          <select class="custom-select">
-            <option selected="">{pokedex.data.name}</option>
-            {pokedex.data.pokemon_entries.map(function(entry,j){
-              return (
-              <option key={j} value={entry.pokemon_species.name}>{entry.entry_number + ': ' + entry.pokemon_species.name}</option>
 
               )
             })}
@@ -108,8 +97,7 @@ handleSubmit(event) {
         <h2 className="card-header">{this.state.pokemonName}</h2>
         <div className="card-body">
           <div className="row">
-              <img className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFront} alt=""/>
-              <img className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={this.state.imageFrontShiny} alt=""/>
+              <img className="imgSprite" style={{height: '13%', width: '13%', display: 'block'}} src={this.state.imageFront} alt=""/>
           </div>
         </div>
         <Species types={this.state.types} weight={this.state.weight} height={this.state.height} id={this.state.id} onSpriteClick={this.handleChildChange} />
