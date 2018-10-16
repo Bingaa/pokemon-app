@@ -45,6 +45,14 @@ export default class Species extends Component{
             });
             console.log(result);
         });
+      } else { 
+        this.setState({
+          loading: false,
+          types: nextProps.types,
+          weight: nextProps.weight,
+          height: nextProps.height
+        });
+
       }
   }
 
@@ -61,7 +69,7 @@ export default class Species extends Component{
           <div className="row">
           {this.state.forms.map(function(form, i){
                      return (
-                      <img onClick={this.handleClick} key={i} title={form.name} className="imgSprite" style={{height: '15%', width: '15%', display: 'block'}} src={form.img} alt=""/>
+                      <img onClick={this.handleClick} key={i} title={form.name} className="imgSprite" style={{height: '13%', width: '13%', display: 'block'}} src={form.img} alt=""/>
                      )
                    }, this)}
           </div>
