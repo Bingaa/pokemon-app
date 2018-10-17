@@ -35,7 +35,7 @@ export default class Stats extends Component{
                 ev: 0, 
                 iv: 31
             }, 
-            level: 1, 
+            level: 50, 
             increased: "none",
             decreased: "none"
         };
