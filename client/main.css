@@ -2196,8 +2196,8 @@ textarea.form-control {
   display: none;
   width: 100%;
   margin-top: 0.25rem;
-  font-size: 80%;
-  color: #469408;
+  font-size: 100%;
+  color: #1ab4f1;
 }
 
 .valid-tooltip {

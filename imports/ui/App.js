@@ -91,12 +91,12 @@ handleSubmit(event) {
         <div className="row">
           <input type="text" value={this.state.pokeId} onChange={this.handleChange} className="form-control is-valid" id="inputInvalid"/>
           <input type="submit" value="Search Pokemon" className="btn btn-info" />
-          
+          <div class="valid-feedback">{this.state.found ? "" : "Pokemon Not Found!"}</div>
         </div>
         
       </div>
       </form>
-      <p>{this.state.found ? "" : "Pokemon Not Found!"}</p>
+     
 
         <h2 className="card-header">{this.state.pokemonName}</h2>
         <div className="card-body">
