@@ -16,7 +16,7 @@ export default class App extends Component {
     this.getPokedexEntries = this.getPokedexEntries.bind(this);
     this.handleChildChange = this.handleChildChange.bind(this); 
     this.state = {
-      pokeId: "Charizard",
+      pokeId: "Charizardb",
       pokemonName: "",
       imageFront: "",
       imageFrontShiny: "",
@@ -28,7 +28,8 @@ export default class App extends Component {
       weight: "",
       height: "",
       pokedexEntries: [],
-      stats: []
+      stats: [], 
+      found: true
     };
     this.handleSubmit();
     this.getPokedexEntries();
@@ -59,19 +60,25 @@ handleSubmit(event) {
   let self = this;
   Meteor.call('getPokemonAPI',this.state.pokeId.toLowerCase(), "pokemon",
     function(error,result){
-      console.log(result);
-      self.setState({
-        pokemonName: result.data.name,
-        imageFront: result.data.sprites.front_default,
-        imageFrontShiny: result.data.sprites.front_shiny,
-        abilities: result.data.abilities,
-        moves: result.data.moves,
-        types: result.data.types,
-        id: result.data.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/",""),
-        weight: result.data.weight/10 + 'lb',
-        height: result.data.height/10 + 'm',
-        stats: result.data.stats
-      });
+      if(!result){ 
+        self.setState({ 
+          found: result
+        }); 
+      } else { 
+        self.setState({
+          pokemonName: result.data.name,
+          imageFront: result.data.sprites.front_default,
+          imageFrontShiny: result.data.sprites.front_shiny,
+          abilities: result.data.abilities,
+          moves: result.data.moves,
+          types: result.data.types,
+          id: result.data.species.url.replace("https://pokeapi.co/api/v2/pokemon-species/", "").replace("/",""),
+          weight: result.data.weight/10 + 'lb',
+          height: result.data.height/10 + 'm',
+          stats: result.data.stats, 
+          found: true
+        });
+      }
     });
 
 }
@@ -85,14 +92,11 @@ handleSubmit(event) {
           <input type="text" value={this.state.pokeId} onChange={this.handleChange} className="form-control is-valid" id="inputInvalid"/>
           <input type="submit" value="Search Pokemon" className="btn btn-info" />
           
-      </div>
-
-              )
-            })}
-          </select>
         </div>
-        })}
-
+        
+      </div>
+      </form>
+      <p>{this.state.found ? "" : "Pokemon Not Found!"}</p>
 
         <h2 className="card-header">{this.state.pokemonName}</h2>
         <div className="card-body">
