@@ -16,7 +16,7 @@ export default class App extends Component {
     this.getPokedexEntries = this.getPokedexEntries.bind(this);
     this.handleChildChange = this.handleChildChange.bind(this); 
     this.state = {
-      pokeId: "Charizardb",
+      pokeId: "Charizard",
       pokemonName: "",
       imageFront: "",
       imageFrontShiny: "",
