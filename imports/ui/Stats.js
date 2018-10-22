@@ -84,7 +84,7 @@ export default class Stats extends Component{
         });
       }
   }
-  calculateStat(stat){ //TODO: Implement nature into calculation
+  calculateStat(stat){
     let nature = 1; 
     if (this.state.increased == stat){ 
         nature = 1.1;
